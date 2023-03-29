@@ -8,6 +8,7 @@ export default {
     deleteSuccess: '删除成功',
     save: '保存',
     saveSuccess: '保存成功',
+    use: '使用',
     reset: '重置',
     action: '操作',
     export: '导出',
@@ -29,7 +30,7 @@ export default {
   },
   chat: {
     newChatButton: '新建聊天',
-    placeholder: '来说点什么吧...（Shift + Enter = 换行）',
+    placeholder: '来说点什么吧...（ / = 模板，Shift + Enter = 换行）',
     placeholderMobile: '来说点什么...',
     copy: '复制',
     copied: '复制成功',

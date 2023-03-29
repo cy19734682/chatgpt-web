@@ -4,9 +4,15 @@ import { computed, h, ref, watch } from 'vue'
 import { NButton, NCard, NDataTable, NDivider, NInput, NList, NListItem, NModal, NPopconfirm, NSpace, NTabPane, NTabs, NThing, useMessage } from 'naive-ui'
 import PromptRecommend from '../../../assets/recommend.json'
 import { SvgIcon } from '..'
-import { usePromptStore } from '@/store'
+import { useChatStore, usePromptStore } from '@/store'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { t } from '@/locales'
+
+const props = defineProps<Props>()
+
+const emit = defineEmits<Emit>()
+
+const chatStore = useChatStore()
 
 interface DataProps {
   renderKey: string
@@ -22,10 +28,6 @@ interface Props {
 interface Emit {
   (e: 'update:visible', visible: boolean): void
 }
-
-const props = defineProps<Props>()
-
-const emit = defineEmits<Emit>()
 
 const message = useMessage()
 
@@ -77,6 +79,13 @@ const changeShowModal = (mode: 'add' | 'modify' | 'local_import', selected = { k
   }
   showModal.value = !showModal.value
   modalMode.value = mode
+}
+
+// 添加新会话
+const usePromptTemplate = (selected = { key: '', value: '' }) => {
+  chatStore.addHistory({ title: selected.key, uuid: Date.now(), isEdit: false })
+  chatStore.setPromptInput(selected.value)
+  show.value = false
 }
 
 // 在线导入相关
@@ -276,6 +285,15 @@ const createColumns = (): DataTableColumns<DataProps> => {
       render(row) {
         return h('div', { class: 'flex items-center flex-col gap-2' }, {
           default: () => [h(
+            NButton,
+            {
+              tertiary: true,
+              size: 'small',
+              type: 'primary',
+              onClick: () => usePromptTemplate(row),
+            },
+            { default: () => t('common.use') },
+          ), h(
             NButton,
             {
               tertiary: true,

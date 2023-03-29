@@ -182,12 +182,21 @@ export const useChatStore = defineStore('chat-store', {
       }
     },
 
+    setPromptInput(text: string) {
+      this.promptInputTxt = text
+    },
+
+    getPromptInput() {
+      return this.promptInputTxt
+    },
+
     async reloadRoute(uuid?: number) {
       this.recordState()
       await router.push({ name: 'Chat', params: { uuid } })
     },
 
     recordState() {
+      this.promptInputTxt = null
       setLocalState(this.$state)
     },
   },

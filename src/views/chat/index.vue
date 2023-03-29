@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import type { Ref } from 'vue'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { NAutoComplete, NButton, NInput, useDialog, useMessage } from 'naive-ui'
@@ -42,6 +42,17 @@ const conversationList = computed(() => dataSources.value.filter(item => (!item.
 const prompt = ref<string>('')
 const loading = ref<boolean>(false)
 const inputRef = ref<Ref | null>(null)
+
+// 从模板中直接使用后从store获取后直接输入
+const promptInput = computed(() => chatStore.getPromptInput())
+watch(
+  () => promptInput.value,
+  (text) => {
+    if (text)
+      prompt.value = text
+  },
+  { immediate: true },
+)
 
 // 添加PromptStore
 const promptStore = usePromptStore()

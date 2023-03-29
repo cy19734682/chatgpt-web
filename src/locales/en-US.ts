@@ -8,6 +8,7 @@ export default {
     deleteSuccess: 'Delete Success',
     save: 'Save',
     saveSuccess: 'Save Success',
+    use: 'Use',
     reset: 'Reset',
     action: 'Action',
     export: 'Export',
@@ -29,7 +30,7 @@ export default {
   },
   chat: {
     newChatButton: 'New Chat',
-    placeholder: 'Ask me anything...(Shift + Enter = line break)',
+    placeholder: 'Ask me anything...( / = Prompt , Shift + Enter = line break)',
     placeholderMobile: 'Ask me anything...',
     copy: 'Copy',
     copied: 'Copied',
