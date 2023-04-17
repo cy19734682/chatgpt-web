@@ -8,6 +8,7 @@ export default {
     deleteSuccess: '삭제 성공',
     save: '저장',
     saveSuccess: '저장 성공',
+    use: '사용',
     reset: '초기화',
     action: '액션',
     export: '내보내기',
@@ -88,6 +89,6 @@ export default {
     importError: '키 값 불일치',
     importRepeatTitle: '제목이 반복되어 건너뜀: {msg}',
     importRepeatContent: '내용이 반복되어 건너뜀: {msg}',
-    onlineImportWarning: '참고: JSON 파일 소스를 확인하십시오!',    
+    onlineImportWarning: '참고: JSON 파일 소스를 확인하십시오!',
   },
 }
